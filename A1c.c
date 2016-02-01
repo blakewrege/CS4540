@@ -56,6 +56,8 @@ int main() {
 	printf("Even Mean: %d \n", mean);
 	calcOdd(odd, 10);
 
+	return 0;
+
 }
 
 
