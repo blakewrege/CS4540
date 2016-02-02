@@ -1,3 +1,12 @@
+/*************************************************
+* Course: CS 4540 – Spring 2016
+* Assignment 1 - Problem 3
+* Name: Blake Wrege
+* E-mail: blake.j.wrege@wmich.edu
+* Submitted: 01/01/2016
+*************************************************/ 
+
+
 #include <stdio.h>
 #include <stdlib.h>
 
