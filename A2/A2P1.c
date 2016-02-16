@@ -26,21 +26,20 @@ main()
 	char myStr[1000];
 
 	/* Prompt user for myStr until variable is within parameters */
-	do {
-		printf("Enter a DNA subsequence: ");
+		printf("\nEnter a DNA subsequence: ");
 		scanf("%s", &myStr);
 		len = strlen(myStr);
 		if (len < 4 || len > 100) {
-			printf("Error: a must be 4 to 100\n");
+			printf("Error: a must be 4 to 100");
 			strcpy(myStr, "");
-		}
-	} while (len < 4 || len > 100);
-
+		}else{
+	/* Sets up for creating child process */
 	int     fd[2], nbytes, d;
 	pid_t   childpid;
 	int count = 0;
-	char tempStr[strlen(myStr)+1];
-	char readbuffer[80]= "";
+	/* Prepares the tempStr and the buffer that is read back into parent */
+	char tempStr[strlen(myStr) + 1];
+	char readbuffer[101] = "";
 
 	pipe(fd);
 	if ((childpid = fork()) == -1)
@@ -51,7 +50,7 @@ main()
 	if (childpid == 0)
 	{
 
-	//	printf("I am the child process. My PID is %d\n", getpid());
+		/* Preforms the filtering in the child process */
 
 		for (d = 0; d <= strlen(myStr); d++) {
 			if (myStr[d] == 'A' || myStr[d] == 'C' || myStr[d] == 'G' || myStr[d] == 'T') {
@@ -60,9 +59,10 @@ main()
 			}
 
 		}
-		char cleanStr[count+1];
+		/* Null terminates the new string */
+		char cleanStr[count + 1];
 		strncpy(cleanStr, tempStr, count);
-		cleanStr[count]='\0';
+		cleanStr[count] = '\0';
 
 
 		/* Child process closes up input side of pipe */
@@ -70,9 +70,8 @@ main()
 
 		/* Send "string" through the output side of pipe */
 		write(fd[1], cleanStr, (strlen(cleanStr)));
-		readbuffer[(strlen(cleanStr))] = '\0';
 		exit(0);
-	
+
 	}
 	else
 	{
@@ -80,10 +79,9 @@ main()
 		close(fd[1]);
 
 		/* Read in a string from the pipe */
-	nbytes = read(fd[0], readbuffer, sizeof(readbuffer));
-	printf("Received string: %s", readbuffer);
-	//	printf("\nI am the parent process. My PID is %d\n", getpid());
+		nbytes = read(fd[0], readbuffer, sizeof(readbuffer));
+		printf("Received string: %s", readbuffer);
 	}
-
+}
 	return 0;
 }
