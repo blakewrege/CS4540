@@ -1,7 +1,7 @@
 
 /*************************************************
 * Course: CS 4540 – Spring 2016
-* Assignment 3 - Problem 1
+* Assignment 3 - Program 2
 * Name: Blake Wrege
 * E-mail: blake.j.wrege@wmich.edu
 * Submitted: 3/14/2016
@@ -23,7 +23,7 @@
 double sum;
 int count = 0;
 int n = 268435456;
-int Narray[268435456];
+int nArray[268435456];
 
 
 
@@ -34,12 +34,12 @@ int main() {
 	clock_gettime(CLOCK_MONOTONIC, &start);
 
     for (int j=0;j<n;j++){
-        Narray[j] =  j;
+        nArray[j] =  j;
     
 	}
 
     for (int i=0;i<n;i++){
-        sum=sum+Narray[i];
+        sum=sum+nArray[i];
     
 	}
 printf("%lf\n",sum);
