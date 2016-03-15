@@ -1,23 +1,6 @@
 # CS4540
 ##Operating Systems Assignment 2
 1. Run "make all"
-2. Problem 1: A2P1.c
-3. run test.sh to test
-
-
-sums list:
-
-1048576 == 549756338176  (549756862464)
-549755289600
-2097152 == 2199024000000 (2199021158400)
-2199022206976
-4194304 == 8796095000000 (8796088827904)
-
-
-1048576
-2097152
-4194304
-134217728
-268435456
-
-
+2. Parallel Program: A3P1.c
+3. Sequential Program: A3P2.c
+4. Answers to assignment questions and graphs are in A3-Answers.docx 
