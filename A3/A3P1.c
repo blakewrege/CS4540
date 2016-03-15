@@ -60,8 +60,8 @@ void* threadWork(void* arg) {
 
 	/* After signalling `main`, the thread could actually
 	go on to do more work in parallel.  */
-
-	for (int j = 0; j < MYTHREADS; j++) {
+    int j;
+	for ( j = 0; j < MYTHREADS; j++) {
 
 		if (id == j) {
 

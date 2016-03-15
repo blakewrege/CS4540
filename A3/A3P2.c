@@ -32,13 +32,13 @@ int main() {
 	struct timespec start, finish;
 	double elapsed;
 	clock_gettime(CLOCK_MONOTONIC, &start);
-
-    for (int j=0;j<n;j++){
+    int j;
+    for ( j=0;j<n;j++){
         nArray[j] =  j;
     
 	}
-
-    for (int i=0;i<n;i++){
+    int i;
+    for ( i=0;i<n;i++){
         sum=sum+nArray[i];
     
 	}
