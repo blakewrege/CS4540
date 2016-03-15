@@ -19,12 +19,12 @@
 #include <pthread.h>
 
 
-
-int MYTHREADS = 8;
-double sum[8];
+/* Set global variables */
+int MYTHREADS = 2;
+double sumArray[8];
 int count = 0;
 int n = 1048576;
-int Narray[1048576];
+int nArray[1048576];
 
 
 
@@ -45,16 +45,12 @@ void* threadWork(void* arg) {
 
 	/* Work.  */
 	id = (*(params_t*)(arg)).id;
-
+	/* Sets each array element to it's index */
 	while (count < n ) {
 		count = count + 1;
-		Narray[count] = count;
+		nArray[count] = count;
 
-		//printf("index: %d  value: %d\n", count, Narray[count-1]);
 	}
-
-
-
 
 
 	/* Unlock and signal completion.  */
@@ -62,33 +58,33 @@ void* threadWork(void* arg) {
 	pthread_cond_signal (&(*(params_t*)(arg)).done);
 
 
-for(int j = 0; j<MYTHREADS; j++){
-
-if (id == j){
-
-int locMin = floor((double)n*(((double)id)/(double)MYTHREADS));
-int locMax = floor((double)n*(((double)id+1)/(double)MYTHREADS));
-//printf("%lf ",(double)id/(double)MYTHREADS);
-//printf("%lf",(double)(id/MYTHREADS));
-//printf("%d start: %d  end: %d \n",id,locMin, locMax);
-//printf("%d start: %d  end: %d \n",id,locMin, locMax);
-while(locMin < locMax){
-locMin++;
-sum[id] = sum[id] + Narray[locMin];
-
-}
-//printf("%d next start: %d\n",id,locMin);
-
-
-}
-}
-
 	/* After signalling `main`, the thread could actually
 	go on to do more work in parallel.  */
+
+	for (int j = 0; j < MYTHREADS; j++) {
+
+		if (id == j) {
+
+			int locMin = floor((double)n * (((double)id) / (double)MYTHREADS));
+			int locMax = floor((double)n * (((double)id + 1) / (double)MYTHREADS));
+
+			while (locMin < locMax) {
+				locMin++;
+				sumArray[id] = sumArray[id] + nArray[locMin];
+
+			}
+
+
+		}
+	}
+
+
 }
 
 
 int main() {
+
+
 	struct timespec start, finish;
 	double elapsed;
 	clock_gettime(CLOCK_MONOTONIC, &start);
@@ -123,12 +119,13 @@ int main() {
 	/* Destroy all synchronization primitives.  */
 	pthread_mutex_destroy (&params.mutex);
 	pthread_cond_destroy (&params.done);
-	/* prints out the sum */
 
-   for (i=0; i< MYTHREADS ; i++)
-   {
-	 finalSum = sum[i] + finalSum;
-   }
+	/* Adds the sum of each thread together for final sum */
+	for (i = 0; i < MYTHREADS ; i++)
+	{
+		finalSum = sumArray[i] + finalSum;
+	}
+	/* prints out the sum */
 	printf("\n\n%d array sum: %lf\n", count, finalSum);
 
 	clock_gettime(CLOCK_MONOTONIC, &finish);
