@@ -37,7 +37,7 @@ struct params {
 
 typedef struct params params_t;
 
-void* hello(void* arg) {
+void* threadWork(void* arg) {
 
 	int id;
 	/* Lock prevents threads from running into each other  */
@@ -109,7 +109,7 @@ int main() {
 		params.id = i;
 
 		/* Spawn a thread.  */
-		pthread_create(&threads[i], NULL, hello, &params);
+		pthread_create(&threads[i], NULL, threadWork, &params);
 
 		/* Give up the lock, wait till thread is 'done',
 		then reacquire the lock.  */
