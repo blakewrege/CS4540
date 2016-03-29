@@ -60,7 +60,7 @@ void* threadWork(void* arg) {
 
 	/* After signalling `main`, the thread could actually
 	go on to do more work in parallel.  */
-    int j;
+	int j;
 	for ( j = 0; j < MYTHREADS; j++) {
 
 		if (id == j) {
@@ -73,12 +73,8 @@ void* threadWork(void* arg) {
 				sumArray[id] = sumArray[id] + nArray[locMin];
 
 			}
-
-
 		}
 	}
-
-
 }
 
 
@@ -86,7 +82,6 @@ int main() {
 
 
 	struct timespec start, finish;
-	double elapsed;
 	clock_gettime(CLOCK_MONOTONIC, &start);
 	double finalSum;
 

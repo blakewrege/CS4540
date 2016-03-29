@@ -1,5 +1,5 @@
 # CS4540
-##Operating Systems Assignment 2
+##Operating Systems Assignment 3
 1. Run "make all"
 2. Parallel Program: A3P1.c
 3. Sequential Program: A3P2.c

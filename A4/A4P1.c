@@ -86,8 +86,6 @@ void* threadWork(void* arg) {
 	threadArray[id] = (float)percentBelow * (float)recArea;
 	printf("Thread %d: %f \n", id, threadArray[id]);
 
-
-
 }
 
 
@@ -97,9 +95,6 @@ int main()
 	int xMin, xMax, yMax, nMax;
 	time_t t;
 	srand((unsigned) time(&t));
-	struct timespec start, finish;
-	double elapsed;
-	clock_gettime(CLOCK_MONOTONIC, &start);
 	float finalSum;
 	float finalAvg;
 
