@@ -4,42 +4,40 @@
 
 struct test_struct
 {
-    int nodeValue;
-    int nodeID;
+    int val;
     struct test_struct *next;
 };
 
 struct test_struct *head = NULL;
 struct test_struct *curr = NULL;
 
-struct test_struct* create_list(int nodeID, int nodeValue)
+struct test_struct* create_list(int val)
 {
-    printf("\n creating list with headnode as [%d]\n", nodeID);
+    printf("\n creating list with headnode as [%d]\n", val);
     struct test_struct *ptr = (struct test_struct*)malloc(sizeof(struct test_struct));
     if (NULL == ptr)
     {
         printf("\n Node creation failed \n");
         return NULL;
     }
-    ptr->nodeID = nodeID;
-    ptr->nodeValue = nodeValue;
+    ptr->val = val;
     ptr->next = NULL;
 
     head = curr = ptr;
     return ptr;
 }
 
-struct test_struct* add_to_list(int nodeID, int nodeValue, bool add_to_end)
+struct test_struct* add_to_list(int val, bool add_to_end)
 {
     if (NULL == head)
     {
-        return (create_list(nodeID, nodeValue));
+        return (create_list(val));
     }
 
     if (add_to_end)
-        printf("\n Adding node to end of list with value [%d]\n", nodeID);
+        printf("\n Adding node to end of list with value [%d]\n", val);
     else
-        printf("\n Adding node to beginning of list with value [%d]\n", nodeID);
+        printf("\n Adding node to beginning of list with value [%d]\n", val);
 
     struct test_struct *ptr = (struct test_struct*)malloc(sizeof(struct test_struct));
     if (NULL == ptr)
@@ -47,8 +45,7 @@ struct test_struct* add_to_list(int nodeID, int nodeValue, bool add_to_end)
         printf("\n Node creation failed \n");
         return NULL;
     }
-    ptr->nodeID = nodeID;
-    ptr->nodeValue = nodeValue;
+    ptr->val = val;
     ptr->next = NULL;
 
     if (add_to_end)
@@ -64,17 +61,17 @@ struct test_struct* add_to_list(int nodeID, int nodeValue, bool add_to_end)
     return ptr;
 }
 
-struct test_struct* search_in_list(int nodeID, struct test_struct **prev)
+struct test_struct* search_in_list(int val, struct test_struct **prev)
 {
     struct test_struct *ptr = head;
     struct test_struct *tmp = NULL;
     bool found = false;
 
-    printf("\n Searching the list for node [%d] \n", nodeID);
+    printf("\n Searching the list for value [%d] \n", val);
 
     while (ptr != NULL)
     {
-        if (ptr->nodeID == nodeID)
+        if (ptr->val == val)
         {
             found = true;
             break;
@@ -98,14 +95,14 @@ struct test_struct* search_in_list(int nodeID, struct test_struct **prev)
     }
 }
 
-int delete_from_list(int nodeID)
+int delete_from_list(int val)
 {
     struct test_struct *prev = NULL;
     struct test_struct *del = NULL;
 
-    printf("\n Deleting value [%d] from list\n", nodeID);
+    printf("\n Deleting value [%d] from list\n", val);
 
-    del = search_in_list(nodeID, &prev);
+    del = search_in_list(val, &prev);
     if (del == NULL)
     {
         return -1;
@@ -138,7 +135,7 @@ void print_list(void)
     printf("\n -------Printing list Start------- \n");
     while (ptr != NULL)
     {
-        printf("\n [%d][%d] \n", ptr->nodeID, ptr->nodeValue);
+        printf("\n [%d] \n", ptr->val);
         ptr = ptr->next;
     }
     printf("\n -------Printing list End------- \n");
@@ -174,7 +171,7 @@ int main(void)
                 allocArray[i1] = i2;
 //                printf("%d %d\n", i1, allocArray[i1]);
                 totalA = totalA + i2;
-                add_to_list(i1, i2, true);
+                add_to_list(i2, true);
             }
             break;
         case 'e' :
@@ -182,34 +179,17 @@ int main(void)
             {
 //              printf("%d\n", i1);
                 //     ptr = search_in_list(i, NULL);
-                //     ptr = search_in_list(i1, NULL);
-                //     if (NULL == ptr)
-                //     {
-                //         printf("\n Search [node value = %d] failed, no such element found\n", i1);
-                //     }
-                //     else
-                //     {
-                //         printf("\n Search passed [node value = %d]\n", ptr->nodeValue);
-                //     }
-
-                ret = delete_from_list(i1);
-                if (ret != 0)
+                ptr = search_in_list(i1, NULL);
+                if (NULL == ptr)
                 {
-                    printf("\n delete [node value = %d] failed, no such element found\n", i1);
+                    printf("\n Search [val = %d] failed, no such element found\n", i);
                 }
                 else
                 {
-                    printf("\n delete [node value = %d]  passed \n", i1);
+                    printf("\n Search passed [val = %d]\n", ptr->val);
                 }
-
-
             }
             totalD = totalD + i1;
-
-
-
-
-
             break;
         case 'i' :
 //            printf("You passed\n" );
@@ -222,7 +202,7 @@ int main(void)
     }
     printf("\n%d %d\n", totalA, totalD);
 
-    print_list();
+  //  print_list();
 
     // int i = 0, ret = 0;
     // struct test_struct *ptr = NULL;
@@ -244,11 +224,11 @@ int main(void)
     //     ptr = search_in_list(i, NULL);
     //     if(NULL == ptr)
     //     {
-    //         printf("\n Search [nodeID = %d] failed, no such element found\n",i);
+    //         printf("\n Search [val = %d] failed, no such element found\n",i);
     //     }
     //     else
     //     {
-    //         printf("\n Search passed [nodeID = %d]\n",ptr->nodeID);
+    //         printf("\n Search passed [val = %d]\n",ptr->val);
     //     }
 
     //     print_list();
@@ -256,11 +236,11 @@ int main(void)
     //     ret = delete_from_list(i);
     //     if(ret != 0)
     //     {
-    //         printf("\n delete [nodeID = %d] failed, no such element found\n",i);
+    //         printf("\n delete [val = %d] failed, no such element found\n",i);
     //     }
     //     else
     //     {
-    //         printf("\n delete [nodeID = %d]  passed \n",i);
+    //         printf("\n delete [val = %d]  passed \n",i);
     //     }
 
     //     print_list();
