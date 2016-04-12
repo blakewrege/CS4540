@@ -1,5 +1,5 @@
 
-   -------Printing list Start------- 
+   -------Printing List Start------- 
 | Location | ID | Size | Start | End  |
 |    01    | 01 |  30  |  0044 | 0074 |
 |    02    | 02 |  17  |  0074 | 0091 |
@@ -8,9 +8,9 @@
 |    07    | 07 |  21  |  0172 | 0193 |
 |    08    | 08 |  10  |  0193 | 0203 |
 |    09    | 09 |  08  |  0203 | 0211 |
-    -------Printing list End------- 
+    -------Printing List End------- 
 
-   -------Printing list Start------- 
+   -------Printing List Start------- 
 | Location | ID | Size | Start | End  |
 |    02    | 02 |  17  |  0074 | 0091 |
 |    04    | 04 |  11  |  0114 | 0125 |
@@ -18,11 +18,11 @@
 |    07    | 07 |  21  |  0172 | 0193 |
 |    08    | 08 |  10  |  0193 | 0203 |
 |    09    | 09 |  08  |  0203 | 0211 |
-    -------Printing list End------- 
+    -------Printing List End------- 
 
  Error: node 40 is over 1024 bytes 
 
-   -------Printing list Start------- 
+   -------Printing List Start------- 
 | Location | ID | Size | Start | End  |
 |    00    | 36 |  33  |  0000 | 0044 |
 |    01    | 39 |  24  |  0044 | 0074 |
@@ -56,11 +56,11 @@
 |    34    | 45 |  47  |  0911 | 0959 |
 |    35    | 35 |  43  |  0959 | 1002 |
 |    37    | 37 |  21  |  1002 | 1023 |
-    -------Printing list End------- 
+    -------Printing List End------- 
 
  Error: node 50 is over 1024 bytes 
 
-   -------Printing list Start------- 
+   -------Printing List Start------- 
 | Location | ID | Size | Start | End  |
 |    00    | 36 |  33  |  0000 | 0044 |
 |    01    | 39 |  24  |  0044 | 0074 |
@@ -95,4 +95,4 @@
 |    34    | 45 |  47  |  0911 | 0959 |
 |    35    | 35 |  43  |  0959 | 1002 |
 |    37    | 37 |  21  |  1002 | 1023 |
-    -------Printing list End------- 
+    -------Printing List End------- 

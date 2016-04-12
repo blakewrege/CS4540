@@ -209,7 +209,7 @@ int main(void)
             /* Prints out each Node in its location within the 1024 bytes of space */
             for (d = 0; d < 50; d++) {
             }
-            printf("\n   -------Printing list Start------- \n");
+            printf("\n   -------Printing List Start------- \n");
             printf("| Location | ID | Size | Start | End  |");
 
             for (d = 0; d < 50; d++) {
@@ -231,10 +231,10 @@ int main(void)
                     printf("\n|    %02d    | %02d |  %02d  |  %04d | %04d |", d, idArray[d], allocArray[d], blockStart, blockEnd);
                 }
             }
-            printf("\n    -------Printing list End------- \n");
+            printf("\n    -------Printing List End------- \n");
             break;
         default :
-            printf("invalid line\n" );
+            printf("Invalid line\n" );
         }
 
 
