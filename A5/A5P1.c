@@ -15,20 +15,20 @@
 
 
 /* Struct for storing nodes */
-struct test_struct
+struct nodeStruct
 {
     int nodeValue;
     int nodeID;
-    struct test_struct *next;
+    struct nodeStruct *next;
 };
 
-struct test_struct *head = NULL;
-struct test_struct *curr = NULL;
+struct nodeStruct *head = NULL;
+struct nodeStruct *curr = NULL;
 
 /* Creates the head node for the linked list */
-struct test_struct* list_start(int nodeID, int nodeValue)
+struct nodeStruct* list_start(int nodeID, int nodeValue)
 {
-    struct test_struct *ptr = (struct test_struct*)malloc(sizeof(struct test_struct));
+    struct nodeStruct *ptr = (struct nodeStruct*)malloc(sizeof(struct nodeStruct));
     ptr->nodeID = nodeID;
     ptr->nodeValue = nodeValue;
     ptr->next = NULL;
@@ -36,14 +36,14 @@ struct test_struct* list_start(int nodeID, int nodeValue)
     return ptr;
 }
 /* Adds a node to the linked list */
-struct test_struct* add_to_list(int nodeID, int nodeValue, bool add_to_end)
+struct nodeStruct* add_to_list(int nodeID, int nodeValue, bool add_to_end)
 {
     if (NULL == head)
     {
         return (list_start(nodeID, nodeValue));
     }
 
-    struct test_struct *ptr = (struct test_struct*)malloc(sizeof(struct test_struct));
+    struct nodeStruct *ptr = (struct nodeStruct*)malloc(sizeof(struct nodeStruct));
     ptr->nodeID = nodeID;
     ptr->nodeValue = nodeValue;
     ptr->next = NULL;
@@ -61,10 +61,10 @@ struct test_struct* add_to_list(int nodeID, int nodeValue, bool add_to_end)
     return ptr;
 }
 /* Searches for node in list to make sure that it exists */
-struct test_struct* search_in_list(int nodeID, struct test_struct **prev)
+struct nodeStruct* search_in_list(int nodeID, struct nodeStruct **prev)
 {
-    struct test_struct *ptr = head;
-    struct test_struct *tmp = NULL;
+    struct nodeStruct *ptr = head;
+    struct nodeStruct *tmp = NULL;
     bool found = false;
 
     while (ptr != NULL)
@@ -95,8 +95,8 @@ struct test_struct* search_in_list(int nodeID, struct test_struct **prev)
 /* Deletes node in list when called on */
 int delete_from_list(int nodeID)
 {
-    struct test_struct *prev = NULL;
-    struct test_struct *del = NULL;
+    struct nodeStruct *prev = NULL;
+    struct nodeStruct *del = NULL;
     del = search_in_list(nodeID, &prev);
     if (del == NULL)
     {
@@ -148,7 +148,7 @@ int main(void)
     totalD = 0;
     int i = 0, ret = 0;
     loc = 0;
-    struct test_struct *ptr = NULL;
+    struct nodeStruct *ptr = NULL;
     fp = fopen("CS4540-A5-App1.txt", "r");
     while (1) {
         fits = true;
