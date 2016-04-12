@@ -2,6 +2,8 @@
 #include<stdlib.h>
 #include<stdbool.h>
 
+
+/* Struct for storing nodes */
 struct test_struct
 {
     int nodeValue;
@@ -12,41 +14,25 @@ struct test_struct
 struct test_struct *head = NULL;
 struct test_struct *curr = NULL;
 
-struct test_struct* create_list(int nodeID, int nodeValue)
+/* Creates the head node for the linked list */
+struct test_struct* list_start(int nodeID, int nodeValue)
 {
-    printf("\n creating list with headnode as [%d]\n", nodeID);
     struct test_struct *ptr = (struct test_struct*)malloc(sizeof(struct test_struct));
-    if (NULL == ptr)
-    {
-        printf("\n Node creation failed \n");
-        return NULL;
-    }
     ptr->nodeID = nodeID;
     ptr->nodeValue = nodeValue;
     ptr->next = NULL;
-
     head = curr = ptr;
     return ptr;
 }
-
+/* Adds a node to the linked list */
 struct test_struct* add_to_list(int nodeID, int nodeValue, bool add_to_end)
 {
     if (NULL == head)
     {
-        return (create_list(nodeID, nodeValue));
+        return (list_start(nodeID, nodeValue));
     }
-
-    if (add_to_end)
-        printf("\n Adding node to end of list with value [%d]\n", nodeID);
-    else
-        printf("\n Adding node to beginning of list with value [%d]\n", nodeID);
 
     struct test_struct *ptr = (struct test_struct*)malloc(sizeof(struct test_struct));
-    if (NULL == ptr)
-    {
-        printf("\n Node creation failed \n");
-        return NULL;
-    }
     ptr->nodeID = nodeID;
     ptr->nodeValue = nodeValue;
     ptr->next = NULL;
@@ -63,14 +49,12 @@ struct test_struct* add_to_list(int nodeID, int nodeValue, bool add_to_end)
     }
     return ptr;
 }
-
+/* Searches for node in list to make sure that it exists */
 struct test_struct* search_in_list(int nodeID, struct test_struct **prev)
 {
     struct test_struct *ptr = head;
     struct test_struct *tmp = NULL;
     bool found = false;
-
-    printf("\n Searching the list for node [%d] \n", nodeID);
 
     while (ptr != NULL)
     {
@@ -97,14 +81,11 @@ struct test_struct* search_in_list(int nodeID, struct test_struct **prev)
         return NULL;
     }
 }
-
+/* Deletes node in list when called on */
 int delete_from_list(int nodeID)
 {
     struct test_struct *prev = NULL;
     struct test_struct *del = NULL;
-
-    printf("\n Deleting value [%d] from list\n", nodeID);
-
     del = search_in_list(nodeID, &prev);
     if (del == NULL)
     {
@@ -124,46 +105,46 @@ int delete_from_list(int nodeID)
             head = del->next;
         }
     }
-
     free(del);
     del = NULL;
 
     return 0;
 }
 
-void print_list(void)
-{
-    struct test_struct *ptr = head;
-
-    printf("\n -------Printing list Start------- \n");
-    while (ptr != NULL)
-    {
-        printf("\n [%d][%d] \n", ptr->nodeID, ptr->nodeValue);
-        ptr = ptr->next;
-    }
-    printf("\n -------Printing list End------- \n");
-
-    return;
-}
 
 int main(void)
 {
     FILE *fp;
-    int k;
-    int i1, i2, totalA, totalD;
+    int k, j, d, loc;
+    int i1, i2, totalA, totalD, totAll;
+    int blockStart = 0;
+    int blockEnd = 0;
+    int idArray[50];
+    int blocksArray[50];
     int allocArray[50];
+    int dellocArray[50];
+    for (d = 0; d < 50; d++) {
+        idArray[d] = 0;
+        allocArray[d] = 0;
+        blocksArray[d] = 0;
+        dellocArray[d] = 0;
+    }
+
+    bool fits;
     char line[80];
     char test;
     totalA = 0;
     totalD = 0;
+    totAll = 0;
     int i = 0, ret = 0;
+    loc = 0;
     struct test_struct *ptr = NULL;
     fp = fopen("CS4540-A5-App1.txt", "r");
     while (1) {
+        fits = true;
         if (fgets(line, 150, fp) == NULL) break;
         k++;
         test = line[1];
-//       printf("%3d: %c", i, test);
 
         /* 'l' is for allocating, 'e' is for deallocate, 'i' is for display */
         switch (test) {
@@ -171,100 +152,84 @@ int main(void)
             if (2 == sscanf(line,
                             "%*[^0123456789]%d%*[^0123456789]%d", &i1, &i2))
             {
-                allocArray[i1] = i2;
-//                printf("%d %d\n", i1, allocArray[i1]);
-                totalA = totalA + i2;
-                add_to_list(i1, i2, true);
+
+
+                if (totalA + i2 > 1024) {
+                    for (j = 0; j < i1; j++) {
+                        if (dellocArray[j] > i2) {
+                            allocArray[j] = i2;
+                            idArray[j] = i1;
+                            dellocArray[j] = 0;
+                            add_to_list(j, totalA, true);
+                            fits = true;
+                            break;
+
+                        } else {
+                            fits = false;
+                        }
+                    }
+                } else {
+                    totalA = totalA + i2;
+                    blocksArray[loc] = totalA;
+                    loc++;
+                    allocArray[i1] = i2;
+                    idArray[i1] = i1;
+                    add_to_list(i1, totalA, true);
+                }
+                if (fits == false) {
+                    printf("\n Error: node %d is over 1024 bytes \n", i1 );
+                }
+                fits = true;
             }
             break;
         case 'e' :
             if (1 == sscanf(line, "%*[^0123456789]%d", &i1))
             {
-//              printf("%d\n", i1);
-                //     ptr = search_in_list(i, NULL);
-                //     ptr = search_in_list(i1, NULL);
-                //     if (NULL == ptr)
-                //     {
-                //         printf("\n Search [node value = %d] failed, no such element found\n", i1);
-                //     }
-                //     else
-                //     {
-                //         printf("\n Search passed [node value = %d]\n", ptr->nodeValue);
-                //     }
+                dellocArray[i1] = allocArray[i1];
+                ptr = search_in_list(i1, NULL);
+
+                totalD = totalD + allocArray[i1];
+
+                totAll = totalA - totalD;
 
                 ret = delete_from_list(i1);
-                if (ret != 0)
-                {
-                    printf("\n delete [node value = %d] failed, no such element found\n", i1);
-                }
-                else
-                {
-                    printf("\n delete [node value = %d]  passed \n", i1);
-                }
-
+                allocArray[i1] = -1;
 
             }
-            totalD = totalD + i1;
-
-
-
-
 
             break;
         case 'i' :
-//            printf("You passed\n" );
+            for (d = 0; d < 50; d++) {
+            }
+            printf("\n   -------Printing list Start------- \n");
+            printf("| Location | ID | Size | Start | End  |");
+
+            for (d = 0; d < 50; d++) {
+                if (allocArray[d] > 0) {
+                    /* Comparisons to fix errors around end nodes */
+                    if (d == 0) {
+                        blockStart = 0;
+                    } else {
+                        blockStart = blocksArray[d - 1];
+                    }
+                    if (blockStart == 1023 ) {
+                        blockStart = blocksArray[d - 2];
+                        blockEnd = blocksArray[d - 1];
+                    } else {
+                        blockEnd = blocksArray[d];
+                    }
+
+
+                    printf("\n|    %02d    | %02d |  %02d  |  %04d | %04d |", d, idArray[d], allocArray[d], blockStart, blockEnd);
+                }
+            }
+            printf("\n    -------Printing list End------- \n");
             break;
         default :
-            printf("Invalid grade\n" );
+            printf("invalid\n" );
         }
 
 
     }
-    printf("\n%d %d\n", totalA, totalD);
-
-    print_list();
-
-    // int i = 0, ret = 0;
-    // struct test_struct *ptr = NULL;
-
-    // print_list();
-
-    // for(i = 5; i<10; i++)
-    //     add_to_list(i,true);
-
-    // print_list();
-
-    // for(i = 4; i>0; i--)
-    //     add_to_list(i,false);
-
-    // print_list();
-
-    // for(i = 1; i<10; i += 4)
-    // {
-    //     ptr = search_in_list(i, NULL);
-    //     if(NULL == ptr)
-    //     {
-    //         printf("\n Search [nodeID = %d] failed, no such element found\n",i);
-    //     }
-    //     else
-    //     {
-    //         printf("\n Search passed [nodeID = %d]\n",ptr->nodeID);
-    //     }
-
-    //     print_list();
-
-    //     ret = delete_from_list(i);
-    //     if(ret != 0)
-    //     {
-    //         printf("\n delete [nodeID = %d] failed, no such element found\n",i);
-    //     }
-    //     else
-    //     {
-    //         printf("\n delete [nodeID = %d]  passed \n",i);
-    //     }
-
-    //     print_list();
-    // }
-
     return 0;
 }
