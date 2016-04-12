@@ -26,7 +26,7 @@ struct nodeStruct *head = NULL;
 struct nodeStruct *curr = NULL;
 
 /* Creates the head node for the linked list */
-struct nodeStruct* list_start(int nodeID, int nodeValue)
+struct nodeStruct* listStart(int nodeID, int nodeValue)
 {
     struct nodeStruct *ptr = (struct nodeStruct*)malloc(sizeof(struct nodeStruct));
     ptr->nodeID = nodeID;
@@ -36,11 +36,11 @@ struct nodeStruct* list_start(int nodeID, int nodeValue)
     return ptr;
 }
 /* Adds a node to the linked list */
-struct nodeStruct* add_to_list(int nodeID, int nodeValue, bool add_to_end)
+struct nodeStruct* listAdd(int nodeID, int nodeValue, bool add_to_end)
 {
     if (NULL == head)
     {
-        return (list_start(nodeID, nodeValue));
+        return (listStart(nodeID, nodeValue));
     }
 
     struct nodeStruct *ptr = (struct nodeStruct*)malloc(sizeof(struct nodeStruct));
@@ -61,7 +61,7 @@ struct nodeStruct* add_to_list(int nodeID, int nodeValue, bool add_to_end)
     return ptr;
 }
 /* Searches for node in list to make sure that it exists */
-struct nodeStruct* search_in_list(int nodeID, struct nodeStruct **prev)
+struct nodeStruct* listSearch(int nodeID, struct nodeStruct **prev)
 {
     struct nodeStruct *ptr = head;
     struct nodeStruct *tmp = NULL;
@@ -93,11 +93,11 @@ struct nodeStruct* search_in_list(int nodeID, struct nodeStruct **prev)
     }
 }
 /* Deletes node in list when called on */
-int delete_from_list(int nodeID)
+int listDel(int nodeID)
 {
     struct nodeStruct *prev = NULL;
     struct nodeStruct *del = NULL;
-    del = search_in_list(nodeID, &prev);
+    del = listSearch(nodeID, &prev);
     if (del == NULL)
     {
         return -1;
@@ -170,7 +170,7 @@ int main(void)
                             allocArray[j] = i2;
                             idArray[j] = i1;
                             dellocArray[j] = 0;
-                            add_to_list(j, totalA, true);
+                            listAdd(j, totalA, true);
                             fits = true;
                             break;
 
@@ -184,7 +184,7 @@ int main(void)
                     loc++;
                     allocArray[i1] = i2;
                     idArray[i1] = i1;
-                    add_to_list(i1, totalA, true);
+                    listAdd(i1, totalA, true);
                 }
                 if (fits == false) {
                     printf("\n Error: node %d is over 1024 bytes \n", i1 );
@@ -196,9 +196,9 @@ int main(void)
             if (1 == sscanf(line, "%*[^0123456789]%d", &i1))
             {
                 dellocArray[i1] = allocArray[i1];
-                ptr = search_in_list(i1, NULL);
+                ptr = listSearch(i1, NULL);
                 totalD = totalD + allocArray[i1];
-                ret = delete_from_list(i1);
+                ret = listDel(i1);
                 allocArray[i1] = -1;
 
             }
