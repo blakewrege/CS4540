@@ -1,3 +1,14 @@
+/*************************************************
+ * * Course: CS 4540 – Spring 2016
+ * * Assignment 5 - Program 1
+ * * Name: Blake Wrege
+ * * E-mail: blake.j.wrege@wmich.edu
+ * * Submitted: 4/11/2016
+ * *************************************************/
+
+
+
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<stdbool.h>
@@ -116,7 +127,7 @@ int main(void)
 {
     FILE *fp;
     int k, j, d, loc;
-    int i1, i2, totalA, totalD, totAll;
+    int i1, i2, totalA, totalD;
     int blockStart = 0;
     int blockEnd = 0;
     int idArray[50];
@@ -135,7 +146,6 @@ int main(void)
     char test;
     totalA = 0;
     totalD = 0;
-    totAll = 0;
     int i = 0, ret = 0;
     loc = 0;
     struct test_struct *ptr = NULL;
@@ -187,11 +197,7 @@ int main(void)
             {
                 dellocArray[i1] = allocArray[i1];
                 ptr = search_in_list(i1, NULL);
-
                 totalD = totalD + allocArray[i1];
-
-                totAll = totalA - totalD;
-
                 ret = delete_from_list(i1);
                 allocArray[i1] = -1;
 
