@@ -163,7 +163,7 @@ int main(void)
                             "%*[^0123456789]%d%*[^0123456789]%d", &i1, &i2))
             {
 
-
+                /* Checks for free space and tries to allocate memory to a location */
                 if (totalA + i2 > 1024) {
                     for (j = 0; j < i1; j++) {
                         if (dellocArray[j] > i2) {
@@ -186,6 +186,7 @@ int main(void)
                     idArray[i1] = i1;
                     listAdd(i1, totalA, true);
                 }
+                /* Displays an error if memory can't be allocated */
                 if (fits == false) {
                     printf("\n Error: node %d is over 1024 bytes \n", i1 );
                 }
@@ -205,6 +206,7 @@ int main(void)
 
             break;
         case 'i' :
+            /* Prints out each Node in its location within the 1024 bytes of space */
             for (d = 0; d < 50; d++) {
             }
             printf("\n   -------Printing list Start------- \n");
@@ -232,7 +234,7 @@ int main(void)
             printf("\n    -------Printing list End------- \n");
             break;
         default :
-            printf("invalid\n" );
+            printf("invalid line\n" );
         }
 
 
