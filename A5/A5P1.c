@@ -36,7 +36,7 @@ struct nodeStruct* listStart(int nodeID, int nodeValue)
     return ptr;
 }
 /* Adds a node to the linked list */
-struct nodeStruct* listAdd(int nodeID, int nodeValue, bool add_to_end)
+struct nodeStruct* listAdd(int nodeID, int nodeValue, bool onEnd)
 {
     if (NULL == head)
     {
@@ -48,7 +48,7 @@ struct nodeStruct* listAdd(int nodeID, int nodeValue, bool add_to_end)
     ptr->nodeValue = nodeValue;
     ptr->next = NULL;
 
-    if (add_to_end)
+    if (onEnd)
     {
         curr->next = ptr;
         curr = ptr;
