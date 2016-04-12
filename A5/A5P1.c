@@ -188,7 +188,7 @@ int main(void)
                 }
                 /* Displays an error if memory can't be allocated */
                 if (fits == false) {
-                    printf("\n Error: node %d is over 1024 bytes \n", i1 );
+                    printf("\n Error: Could not allocate space for node %d, is over 1024 bytes \n", i1 );
                 }
                 fits = true;
             }

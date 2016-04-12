@@ -20,7 +20,7 @@
 |    09    | 09 |  08  |  0203 | 0211 |
     -------Printing List End------- 
 
- Error: node 40 is over 1024 bytes 
+ Error: Could not allocate space for node 40, is over 1024 bytes 
 
    -------Printing List Start------- 
 | Location | ID | Size | Start | End  |
@@ -58,7 +58,7 @@
 |    37    | 37 |  21  |  1002 | 1023 |
     -------Printing List End------- 
 
- Error: node 50 is over 1024 bytes 
+ Error: Could not allocate space for node 50, is over 1024 bytes 
 
    -------Printing List Start------- 
 | Location | ID | Size | Start | End  |
