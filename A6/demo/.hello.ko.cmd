@@ -1,0 +1,1 @@
+cmd_/home/cclub/CS4540/A6/demo/hello.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/cclub/CS4540/A6/demo/hello.ko /home/cclub/CS4540/A6/demo/hello.o /home/cclub/CS4540/A6/demo/hello.mod.o
