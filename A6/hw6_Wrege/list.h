@@ -14,7 +14,7 @@ struct student{
  int courseCredit;
  int grade;
  struct list_head list;
-}
+};
 struct student *studentDemo;
 studentDemo = kmalloc(sizeof(*studentDemo), GFP KERNEL);
 studentDemo->studentNumber = 760120495;
