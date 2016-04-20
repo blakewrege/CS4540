@@ -586,6 +586,17 @@ deps_/home/cclub/CS4540/A6/demo/hello.o := \
     $(wildcard include/config/have/mod/arch/specific.h) \
     $(wildcard include/config/modules/use/elf/rel.h) \
     $(wildcard include/config/modules/use/elf/rela.h) \
+  /home/cclub/CS4540/A6/demo/list.h \
+  include/linux/slab.h \
+    $(wildcard include/config/debug/slab.h) \
+    $(wildcard include/config/failslab.h) \
+    $(wildcard include/config/slab.h) \
+    $(wildcard include/config/slub.h) \
+    $(wildcard include/config/slob.h) \
+  include/linux/kmemleak.h \
+    $(wildcard include/config/debug/kmemleak.h) \
+  include/linux/kasan.h \
+    $(wildcard include/config/kasan/shadow/offset.h) \
 
 /home/cclub/CS4540/A6/demo/hello.o: $(deps_/home/cclub/CS4540/A6/demo/hello.o)
 
