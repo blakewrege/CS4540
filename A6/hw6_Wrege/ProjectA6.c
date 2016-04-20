@@ -1,7 +1,7 @@
 #include <linux/module.h>       /* Needed by all modules */
 #include <linux/kernel.h>       /* Needed for KERN_INFO */
 #include <linux/init.h>         /* Needed for the macros */
-#include "/home/cclub/CS4540/A6/demo/list.h"
+#include "/home/cclub/CS4540/A6/hw6_Wrege/list.h"
 #include <linux/slab.h>
 #include <linux/printk.h>
 
