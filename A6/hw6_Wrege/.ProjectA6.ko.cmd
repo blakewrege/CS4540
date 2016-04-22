@@ -1,1 +1,0 @@
-cmd_/home/cclub/CS4540/A6/hw6_Wrege/ProjectA6.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/cclub/CS4540/A6/hw6_Wrege/ProjectA6.ko /home/cclub/CS4540/A6/hw6_Wrege/ProjectA6.o /home/cclub/CS4540/A6/hw6_Wrege/ProjectA6.mod.o
