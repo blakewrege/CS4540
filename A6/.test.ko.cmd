@@ -1,1 +1,0 @@
-cmd_/home/blake/github/CS4540/A6/test.ko := ld -r -m elf_x86_64 -T /usr/src/linux-headers-4.4.0-1-common/scripts/module-common.lds --build-id  -o /home/blake/github/CS4540/A6/test.ko /home/blake/github/CS4540/A6/test.o /home/blake/github/CS4540/A6/test.mod.o
