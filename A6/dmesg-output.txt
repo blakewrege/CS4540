@@ -1,0 +1,9 @@
+[  823.828641] Loading Module
+[  823.828647] traversing the list using list_for_each_entry()n
+[  823.828649] student number: 760120495; course credit: 0; grade: 1
+[  823.828652] student number: 760120495; course credit: 130; grade: 2
+[  823.828653] student number: 760120495; course credit: 260; grade: 3
+[  823.828655] student number: 760120495; course credit: 390; grade: 4
+[  823.828656] student number: 760120495; course credit: 520; grade: 5
+[  823.828658] student number: 760120495; course credit: 650; grade: 6
+[  823.835226] Removing Module
