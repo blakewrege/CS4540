@@ -1,9 +1,9 @@
 /*************************************************
  * * Course: CS 4540 – Spring 2016
- * * Assignment 5 - Program 1
+ * * Assignment 6 - Program 1
  * * Name: Blake Wrege
  * * E-mail: blake.j.wrege@wmich.edu
- * * Submitted: 4/11/2016
+ * * Submitted: 4/19/2016
  * *************************************************/
 
 
